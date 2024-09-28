@@ -1,9 +1,13 @@
-import Demo from "./Demo";
+import { BrowserRouter } from "react-router-dom";
+import { Demo } from "./Demo";
+import { MyRouter } from "./router/MyRouter";
 
 function App() {
   return (
     <div className="App">
-      <Demo />
+      <BrowserRouter>
+        <MyRouter />
+      </BrowserRouter>
     </div>
   );
 }
