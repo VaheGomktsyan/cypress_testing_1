@@ -5,16 +5,16 @@ import { ITask } from "./type/type";
 import { useDispatch, useSelector } from "react-redux";
 import { addTask, delTaskById } from "./features/task/taskSlice";
 import { RootState } from "./app/store";
-import "./task.css"
+import "./task.css";
 
-export const Demo: React.FC = React.memo(({ }): JSX.Element => {
-  const dispatch = useDispatch()
+export const Demo: React.FC = React.memo(({}): JSX.Element => {
+  const dispatch = useDispatch();
   const save = (data: ITask) => {
-    dispatch(addTask({ ...data, id: Date.now() }))
-    reset()
-  }
-  const { handleSubmit, register, reset } = useForm<ITask>()
-  const { tasks } = useSelector((st: RootState) => st.task)
+    dispatch(addTask({ ...data, id: Date.now() }));
+    reset();
+  };
+  const { handleSubmit, register, reset } = useForm<ITask>();
+  const { tasks } = useSelector((st: RootState) => st.task);
   return (
     <div className="container">
       {/* <h1>Cypress ToDo</h1>
@@ -27,18 +27,31 @@ export const Demo: React.FC = React.memo(({ }): JSX.Element => {
       </ul> */}
       <div className="input-section">
         <form onSubmit={handleSubmit(save)}>
-          <input {...register("name", { required: "Enter task name", })} className="task-input" />
+          <input
+            {...register("name", { required: "Enter task name" })}
+            className="task-input"
+          />
           <button className="add-btn">Add</button>
         </form>
       </div>
       {tasks.map((elm, index) => (
         <ul key={index} className="task-list">
           <li className="task">
-            {elm.name}
-            <button className="delete-btn" onClick={() => dispatch(delTaskById(elm.id))}>🗑️</button>
+            <span>{elm.name}</span>
+            <button
+              className="delete-btn"
+              onClick={() => dispatch(delTaskById(elm.id))}
+            >
+              🗑️
+            </button>
           </li>
         </ul>
       ))}
     </div>
   );
-})
+});
+
+
+// Node Nest.js Mongo to do list 
+// Testing https://docs.nestjs.com/fundamentals/testing
+
